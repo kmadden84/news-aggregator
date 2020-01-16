@@ -21,7 +21,6 @@ useEffect(() => {
 
 
 
-
 useEffect(() => {
 
     var page_elems_array = Array.from(document.querySelectorAll('.pageHolder div'));
@@ -33,6 +32,26 @@ useEffect(() => {
 
 }, [context.newsItems]);
 
+const formattedDate = (date) => {
+
+    if (date) {
+
+    var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+    
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+    
+      return monthNames[monthIndex] + ' ' + day + ',' + ' ' + year;
+
+    }
+}
+
 return (
         <div>
 
@@ -42,7 +61,7 @@ return (
                 <Row>
                     {
                         (newsItems) 
-                        ? newsItems.map((item, index) => (
+                        ? newsItems.map((item, index) => (                            
                         <Col md={6} lg={4} key={index}>
                             <Card>
                             <div className="cardImg">
@@ -50,6 +69,9 @@ return (
                             </div>
                                 <Card.Body>
                                     <Card.Title>{item.title}</Card.Title>
+                                    <Card.Text>
+                                    {item.source.name} - {formattedDate(new Date(item.publishedAt))}
+                                 </Card.Text>
                                     <Card.Text>
                                        {item.description}
                                     </Card.Text>
