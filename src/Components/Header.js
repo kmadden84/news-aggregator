@@ -1,0 +1,12 @@
+import React from 'react';
+
+
+const Header = props => {
+    return(
+        <div className="header">
+        <h1>Kevin's News Aggregator</h1> 
+     </div>
+    )
+}
+
+export default Header;
