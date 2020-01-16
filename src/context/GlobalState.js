@@ -24,8 +24,8 @@ const GlobalState = props => {
 
               var totalpages = Math.round(data.totalResults / data.articles.length);
               var pageArray = [];
-              for (var i=0;i<=totalpages;i++) {
-                if (i <= 4) {
+              for (var i=1;i<=totalpages;i++) {
+                if (i <= 5) {
                 pageArray.push(i)
                   }
              }
@@ -35,18 +35,21 @@ const GlobalState = props => {
 
     };
 
-    const fetchItems = (query, pageNum) => {
+    const fetchItems = (query, page) => {
         console.log('category/search/pagenumber toggle fetched');
         console.log('query is: ' + query + ' and page number is:' + pageNum);
-        setPageNum(pageNum);
+        if (page) {
+        setPageNum(page);
+        }
         setCurrentHeadline(query);
         setQueryString(query);
 
-        if (query !== '') {
-            var url = `https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${pageNum}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
+        if (query !== '' && query !== 'Latest') {
+            var url = `https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
         } else {
-            var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
+            var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
         }
+        
         console.log(url)
 
         fetch(url, {
@@ -57,8 +60,8 @@ const GlobalState = props => {
               console.log(data)
               var totalpages = Math.round(data.totalResults / data.articles.length);
               var pageArray = [];
-              for (var i=0;i<=totalpages;i++) {
-                  if (i <= 4) {
+              for (var i=1;i<=totalpages;i++) {
+                  if (i <= 5) {
                 pageArray.push(i)
                   }
              }
