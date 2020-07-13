@@ -11,11 +11,11 @@ const GlobalState = props => {
     const [pageNum, setPageNum] = useState("1");
     const [pages, setPages] = useState(["1"]);
     const [queryString, setQueryString] = useState('');
-
+    const apiKey = process.env.REACT_APP_APIKey;
 
     const fetchTopHeadlines = () => {
         console.log('top headlines fetched')
-        fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`, {
+        fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=${apiKey}`, {
 
         }).then((response) => response.json())
           .then((data) => {
@@ -45,9 +45,9 @@ const GlobalState = props => {
         setQueryString(query);
 
         if (query !== '' && query !== 'Latest') {
-            var url = `https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
+            var url = `https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
         } else {
-            var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=aac18cf3acf04bf69cb2ecf5cd878583`
+            var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
         }
         
         console.log(url)
@@ -82,7 +82,8 @@ const GlobalState = props => {
                 pages: pages,
                 query: queryString,
                 pageNum: pageNum,
-                setPageNum: setPageNum
+                setPageNum: setPageNum,
+                apiKey: apiKey
             }}
         >
             {props.children}
