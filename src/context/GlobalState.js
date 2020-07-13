@@ -15,7 +15,7 @@ const GlobalState = props => {
 
     const fetchTopHeadlines = () => {
         console.log('top headlines fetched')
-        fetch('https://adoring-mccarthy-e153bb.netlify.app/topheadlines', {
+        fetch('/topheadlines', {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         },
@@ -50,9 +50,9 @@ const GlobalState = props => {
         setQueryString(query);
         let url;
         if (query !== '' && query !== 'Latest') {
-            url = 'https://adoring-mccarthy-e153bb.netlify.app/query'
+            url = '/query'
         } else {
-            url = 'https://adoring-mccarthy-e153bb.netlify.app/noquery'
+            url = '/noquery'
         }
         
         fetch(url, {
