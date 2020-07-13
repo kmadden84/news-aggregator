@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
-
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 const apiKey = process.env.REACT_APP_APIKey;
 
 app.post('/topheadlines', (req, res) => {
