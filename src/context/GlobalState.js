@@ -15,7 +15,7 @@ const GlobalState = props => {
 
     const fetchTopHeadlines = () => {
         console.log('top headlines fetched')
-        fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=${apiKey}`, {
+        fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=${apiKey}`, {
 
         }).then((response) => response.json())
           .then((data) => {
@@ -45,9 +45,9 @@ const GlobalState = props => {
         setQueryString(query);
 
         if (query !== '' && query !== 'Latest') {
-            var url = `https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
+            var url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
         } else {
-            var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
+            var url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
         }
         
         console.log(url)
@@ -82,8 +82,7 @@ const GlobalState = props => {
                 pages: pages,
                 query: queryString,
                 pageNum: pageNum,
-                setPageNum: setPageNum,
-                apiKey: apiKey
+                setPageNum: setPageNum
             }}
         >
             {props.children}
