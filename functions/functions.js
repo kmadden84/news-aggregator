@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 const express = require('express');
+const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
 const apiKey = process.env.REACT_APP_APIKey;
@@ -51,3 +52,5 @@ app.post('/query', (req, res) => {
       })
       .catch(error => ({ statusCode: 422, body: String(error) }));
     });
+
+module.exports.handler = serverless(app);
