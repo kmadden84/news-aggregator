@@ -11,19 +11,21 @@ const GlobalState = props => {
     const [pageNum, setPageNum] = useState("1");
     const [pages, setPages] = useState(["1"]);
     const [queryString, setQueryString] = useState('');
-    const apiKey = process.env.REACT_APP_APIKey;
+   //const apiKey = process.env.REACT_APP_APIKey;
 
     const fetchTopHeadlines = () => {
         console.log('top headlines fetched')
-        fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=${apiKey}`, {
+        fetch('/topheadlines', {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        body: JSON.stringify({
+          "pageNum": pageNum
+        })
         }).then((response) => response.json())
           .then((data) => {
               setNewsItems(data.articles);
               console.log(data);
-
               var totalpages = Math.round(data.totalResults / data.articles.length);
               var pageArray = [];
               for (var i=1;i<=totalpages;i++) {
@@ -47,13 +49,16 @@ const GlobalState = props => {
         setQueryString(query);
         let url;
         if (query !== '' && query !== 'Latest') {
-            url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
+            url = '/query'
         } else {
-            url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
+            url = '/noquery'
         }
         
         fetch(url, {
-
+          body: JSON.strigify({
+              "query": queryString,
+              "page": page
+            })
         }).then((response) => response.json())
           .then((data) => {
               setNewsItems(data.articles);
