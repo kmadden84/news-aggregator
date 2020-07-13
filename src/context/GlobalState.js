@@ -17,7 +17,7 @@ const GlobalState = props => {
         console.log('top headlines fetched')
         fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${pageNum}&apiKey=${apiKey}`, {
         headers: {
-            X-Requested-With: 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest'
         }
         }).then((response) => response.json())
           .then((data) => {
