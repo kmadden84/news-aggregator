@@ -57,7 +57,7 @@ const GlobalState = props => {
         
         fetch(url, {
           method: "POST",
-          body: JSON.strigify({
+          body: JSON.stringify({
               "query": queryString,
               "page": page
             })
