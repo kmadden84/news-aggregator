@@ -43,15 +43,13 @@ const GlobalState = props => {
         }
         setCurrentHeadline(query);
         setQueryString(query);
-
+        let url;
         if (query !== '' && query !== 'Latest') {
-            let url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
+            url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=20&page=${page}&apiKey=${apiKey}`
         } else {
-            let url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
+            url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&pageSize=20&page=${page}&apiKey=${apiKey}`
         }
         
-        console.log(url)
-
         fetch(url, {
 
         }).then((response) => response.json())
