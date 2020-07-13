@@ -16,7 +16,7 @@ let currentPage = context.pageNum;
 useEffect(() => {
 
   context.fetchTopHeadlines()
-}, []);
+}, [context]);
 
 
 
