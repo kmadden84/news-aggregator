@@ -19,6 +19,7 @@ const GlobalState = props => {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         },
+        method: "POST",
         body: JSON.stringify({
           "pageNum": pageNum
         })
@@ -55,6 +56,7 @@ const GlobalState = props => {
         }
         
         fetch(url, {
+          method: "POST",
           body: JSON.strigify({
               "query": queryString,
               "page": page
